@@ -1,1 +1,0 @@
-{ Name = ./Name/package.dhall }

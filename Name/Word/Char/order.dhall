@@ -1,6 +1,6 @@
 let Self = ./Type.dhall
 
-let Lude = ../../../../Lude.dhall
+let Lude = ../../../Lude.dhall
 
 let Comparison = Lude.Algebras.Order.Comparison
 

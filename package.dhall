@@ -1,1 +1,1 @@
-{ Structures = ./Structures/package.dhall }
+{ Name = ./Name/package.dhall }
