@@ -8,25 +8,24 @@ let Comparison = Order.Comparison
 
 let Word = Lude.Structures.LatinChars
 
-let Number = ../Number/package.dhall
-
 let compare
     : Self -> Self -> Comparison
     = \(left : Self) ->
       \(right : Self) ->
         merge
           { Number =
-              \(left : Number.Type) ->
+              \(left : Natural) ->
                 merge
                   { Number =
-                      \(right : Number.Type) -> Number.order.compare left right
+                      \(right : Natural) ->
+                        Lude.Extensions.Natural.order.compare left right
                   , Word = \(right : Word.Type) -> Comparison.Smaller
                   }
                   right
           , Word =
               \(left : Word.Type) ->
                 merge
-                  { Number = \(right : Number.Type) -> Comparison.Greater
+                  { Number = \(right : Natural) -> Comparison.Greater
                   , Word = \(right : Word.Type) -> Word.order.compare left right
                   }
                   right

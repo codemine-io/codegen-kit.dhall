@@ -6,8 +6,6 @@ let Word = Lude.Structures.LatinChars
 
 let WordOrNumber = ./WordOrNumber/package.dhall
 
-let Number = ./Number/package.dhall
-
 in  { singleWord =
           assert
         :     subj
@@ -71,10 +69,7 @@ in  { singleWord =
                       { head = Word.Char.Type.V
                       , tail = [] : List Word.Char.Type
                       }
-                  , WordOrNumber.Type.Number
-                      { head = Number.Char.Type.Two
-                      , tail = [] : List Number.Char.Type
-                      }
+                  , WordOrNumber.Type.Number 2
                   ]
                 }
           ===  "ApiV2"
@@ -87,10 +82,7 @@ in  { singleWord =
                     [ Word.Char.Type.S, Word.Char.Type.E, Word.Char.Type.R ]
                   }
                 , tail =
-                  [ WordOrNumber.Type.Number
-                      { head = Number.Char.Type.One
-                      , tail = [ Number.Char.Type.Two, Number.Char.Type.Three ]
-                      }
+                  [ WordOrNumber.Type.Number 123
                   , WordOrNumber.Type.Word
                       { head = Word.Char.Type.N
                       , tail =
@@ -140,10 +132,7 @@ in  { singleWord =
                       , tail =
                         [ Word.Char.Type.S, Word.Char.Type.E, Word.Char.Type.R ]
                       }
-                  , WordOrNumber.Type.Number
-                      { head = Number.Char.Type.Four
-                      , tail = [ Number.Char.Type.Two ]
-                      }
+                  , WordOrNumber.Type.Number 42
                   , WordOrNumber.Type.Word
                       { head = Word.Char.Type.D
                       , tail =
