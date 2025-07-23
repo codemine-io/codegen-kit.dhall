@@ -2,7 +2,9 @@ let Self = ./Type.dhall
 
 let Prelude = ./Prelude.dhall
 
-let Char = ./Char/package.dhall
+let Lude = ../../Lude.dhall
+
+let Char = Lude.Structures.LatinChar
 
 in  \(self : Self) ->
           Char.toTextInUpper self.head

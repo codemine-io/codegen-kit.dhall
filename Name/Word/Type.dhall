@@ -1,5 +1,7 @@
 let Prelude = ./Prelude.dhall
 
-let Char = ./Char/package.dhall
+let Lude = ../../Lude.dhall
+
+let Char = Lude.Structures.LatinChar
 
 in  Prelude.NonEmpty.Type Char.Type

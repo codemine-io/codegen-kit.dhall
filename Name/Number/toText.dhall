@@ -2,7 +2,9 @@ let Self = ./Type.dhall
 
 let Prelude = ./Prelude.dhall
 
-let Char = ./Char/package.dhall
+let Lude = ../../Lude.dhall
+
+let Char = Lude.Structures.Digit
 
 in  \(self : Self) ->
           Char.toText self.head
