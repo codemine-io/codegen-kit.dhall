@@ -1,5 +1,7 @@
 let Number = ../Number/package.dhall
 
-let Word = ../Word/package.dhall
+let Lude = ../../Lude.dhall
 
-in  ./fold.dhall Text Word.toTextInUpper Number.toText
+let Word = Lude.Structures.LatinChars
+
+in  ./fold.dhall Text Word.toTextInTitle Number.toText

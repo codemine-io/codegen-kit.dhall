@@ -1,6 +1,8 @@
 let subj = ./toTextInPascal.dhall
 
-let Word = ./Word/package.dhall
+let Lude = ../Lude.dhall
+
+let Word = Lude.Structures.LatinChars
 
 let WordOrNumber = ./WordOrNumber/package.dhall
 

@@ -4,7 +4,9 @@ let Prelude = ./Prelude.dhall
 
 let Number = ../Number/package.dhall
 
-let Word = ../Word/package.dhall
+let Lude = ../../Lude.dhall
+
+let Word = Lude.Structures.LatinChars
 
 in  \(Out : Type) ->
     \(fromWord : Word.Type -> Out) ->

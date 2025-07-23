@@ -6,7 +6,7 @@ let Order = Lude.Algebras.Order
 
 let Comparison = Order.Comparison
 
-let Word = ../Word/package.dhall
+let Word = Lude.Structures.LatinChars
 
 let Number = ../Number/package.dhall
 
