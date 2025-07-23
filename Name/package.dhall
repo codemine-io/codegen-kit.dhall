@@ -7,4 +7,5 @@
 , toTextInPascal = ./toTextInPascal.dhall
 , toTextInSnake = ./toTextInSnake.dhall
 , fromLatinChars = ./fromLatinChars.dhall
+, concat = ./concat.dhall
 }
