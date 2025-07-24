@@ -1,6 +1,6 @@
 let Prelude = ../Prelude.dhall
 
-let Name = ./Type.dhall
+let Self = ./Type.dhall
 
 let Lude = ../Lude.dhall
 
@@ -19,18 +19,16 @@ in  \(headHead : LatinChar.Type) ->
     \(tail : List (List LatinChar.Type)) ->
         concat
           (word headHead headTail)
-          ( Prelude.List.concatMap
+          ( Prelude.List.filterMap
               (List LatinChar.Type)
-              Name
+              Self
               ( \(list : List LatinChar.Type) ->
-                  merge
-                    { None = [] : List Name
-                    , Some =
-                        \(latinChars : LatinChars.Type) ->
-                          [ fromLatinChars latinChars ]
-                    }
+                  Prelude.Optional.map
+                    LatinChars.Type
+                    Self
+                    fromLatinChars
                     (Lude.Extensions.List.uncons LatinChar.Type list)
               )
               tail
           )
-      : Name
+      : Self
