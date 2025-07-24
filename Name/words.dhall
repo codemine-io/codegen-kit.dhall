@@ -22,12 +22,12 @@ in  \(headHead : LatinChar.Type) ->
           ( Prelude.List.filterMap
               (List LatinChar.Type)
               Self
-              ( \(list : List LatinChar.Type) ->
-                  Prelude.Optional.map
-                    LatinChars.Type
-                    Self
-                    fromLatinChars
-                    (Lude.Extensions.List.uncons LatinChar.Type list)
+              ( Prelude.Function.compose
+                  (List LatinChar.Type)
+                  (Optional LatinChars.Type)
+                  (Optional Self)
+                  (Lude.Extensions.List.uncons LatinChar.Type)
+                  (Prelude.Optional.map LatinChars.Type Self fromLatinChars)
               )
               tail
           )
