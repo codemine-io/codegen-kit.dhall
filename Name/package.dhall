@@ -11,4 +11,5 @@
 , fromLatinChars = ./fromLatinChars.dhall
 , fromLatinCharsAndNumber = ./fromLatinCharsAndNumber.dhall
 , concat = ./concat.dhall
+, word = ./word.dhall
 }
