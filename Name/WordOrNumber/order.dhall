@@ -2,34 +2,42 @@ let Self = ./Type.dhall
 
 let Lude = ../../Lude.dhall
 
-let Order = Lude.Algebras.Order
+let Typeclasses = ../../Typeclasses.dhall
 
-let Comparison = Order.Comparison
+let Ordering = Typeclasses.Classes.Ordering
 
 let Word = Lude.Structures.LatinChars
 
-let compare
-    : Self -> Self -> Comparison
-    = \(left : Self) ->
+let OrderType = < Less | Equal | Greater >
+
+let compareNatural =
+      \(left : Natural) ->
+      \(right : Natural) ->
+        if    Natural/isZero (Natural/subtract right left)
+        then  if    Natural/isZero (Natural/subtract left right)
+              then  OrderType.Equal
+              else  OrderType.Greater
+        else  OrderType.Less
+
+let compare =
+      \(left : Self) ->
       \(right : Self) ->
         merge
           { Number =
               \(left : Natural) ->
                 merge
-                  { Number =
-                      \(right : Natural) ->
-                        Lude.Extensions.Natural.order.compare left right
-                  , Word = \(right : Word.Type) -> Comparison.Smaller
+                  { Number = \(right : Natural) -> compareNatural left right
+                  , Word = \(right : Word.Type) -> OrderType.Less
                   }
                   right
           , Word =
               \(left : Word.Type) ->
                 merge
-                  { Number = \(right : Natural) -> Comparison.Greater
-                  , Word = \(right : Word.Type) -> Word.order.compare left right
+                  { Number = \(right : Natural) -> OrderType.Greater
+                  , Word = \(right : Word.Type) -> Word.order.order left right
                   }
                   right
           }
           left
 
-in  { compare } : Order.Type Self
+in  { order = compare } : Ordering.Type Self

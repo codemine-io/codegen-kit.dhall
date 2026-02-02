@@ -2,34 +2,33 @@ let Self = ./Type.dhall
 
 let Lude = ../Lude.dhall
 
-let Order = Lude.Algebras.Order
+let Typeclasses = ../Typeclasses.dhall
 
-let Comparison = Order.Comparison
-
-let Lude = ../Lude.dhall
+let Ordering = Typeclasses.Classes.Ordering
 
 let Word = Lude.Structures.LatinChars
 
 let WordOrNumber = ./WordOrNumber/package.dhall
 
-let compare
-    : Self -> Self -> Comparison
-    = \(left : Self) ->
+let OrderType = < Less | Equal | Greater >
+
+let compare =
+      \(left : Self) ->
       \(right : Self) ->
-        let comparison = Word.order.compare left.head right.head
+        let comparison = Word.order.order left.head right.head
 
         let handler =
-              { Smaller = Comparison.Smaller
-              , Greater = Comparison.Greater
+              { Less = OrderType.Less
+              , Greater = OrderType.Greater
               , Equal =
-                  ( Lude.Extensions.List.order
+                  ( Typeclasses.Instances.List.ordering
                       WordOrNumber.Type
                       WordOrNumber.order
-                  ).compare
+                  ).order
                     left.tail
                     right.tail
               }
 
         in  merge handler comparison
 
-in  { compare } : Order.Type Self
+in  { order = compare } : Ordering.Type Self
