@@ -15,6 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check if tag already exists
+        id: tag-exists
+        uses: action-pack/tag-exists@v1
+        with:
+          tag: >
+            ${{ inputs.version-tag }}
+      
+      - name: Fail if tag exists
+        if: steps.tag-exists.outputs.exists == 'true'
+        run: |
+          echo "::error::Tag ${{ inputs.version-tag }} already exists."
+          exit 1
+
       - name: Resolve Dhall
         id: resolve
         uses: nikita-volkov/dhall-resolve.github-action@v1
