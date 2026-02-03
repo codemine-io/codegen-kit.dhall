@@ -1,4 +1,6 @@
-# Utils for writing code generators in Dhall
+# codegen-kit: Utils for writing code generators in Dhall
+
+[![Continuous Docs](https://img.shields.io/badge/docs-master-blue)](https://codemine-io.github.io/codegen-kit.dhall/)
 
 - Flexible abstraction over case-agnostic names
 
